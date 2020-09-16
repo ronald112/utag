@@ -4,10 +4,13 @@
 #include <iostream>
 #include <iomanip>
 #include <stdio.h>
+#include <regex>
+#include <string>
+#include <map>
+
+#include <filesystem>
 
 // TAGLIB
 #include <tag.h>
 #include <fileref.h>
 #include <tpropertymap.h>
-
-int dummy(int argc, char *argv[]);
