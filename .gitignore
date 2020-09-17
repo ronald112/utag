@@ -1,6 +1,9 @@
 # F*cking store
 .DS_Store
 
+#build files
+build/
+
 #CMAKE
 CMakeLists.txt.user
 CMakeCache.txt
