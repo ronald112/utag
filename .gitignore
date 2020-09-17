@@ -4,6 +4,9 @@
 #build files
 build/
 
+# Ignore a file without extension
+utag/utag
+
 #CMAKE
 CMakeLists.txt.user
 CMakeCache.txt
