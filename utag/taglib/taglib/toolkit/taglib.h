@@ -70,13 +70,6 @@
 # define ATOMIC_DEC(x) (--x)
 #endif
 
-// #if __APPLE__
-//     #define AtomicIncrement(x)  OSAtomicIncrement32Barrier ( &(x) )
-//     #define AtomicIncrement(x)  std::atomic<int32_t> var(x);    \
-//                                 std::atomic_fetch_add(&var, 1); \
-//                                 x = std::atomic_load(&var);
-// #endif
-
 #if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ > 1)) || defined(__clang__)
 #define TAGLIB_IGNORE_MISSING_DESTRUCTOR _Pragma("GCC diagnostic ignored \"-Wnon-virtual-dtor\"")
 #else
