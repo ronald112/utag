@@ -7,6 +7,14 @@ add_compile_options(
     -Wpedantic
 )
 
+message("## Looking for Qt...")
+find_package(Qt5 REQUIRED Core Qml Widgets)
+if (${Qt5_FOUND})
+    message("## Found Qt " ${Qt5_VERSION})
+else()
+    message("## Couldn't find Qt")
+endif()
+
 # MACRO to add all directories in result
 MACRO(SUBDIRLIST result firstdir curdir)
     file(GLOB ENDF6_SRC_TOP RELATIVE
@@ -36,4 +44,5 @@ include_all_files()
 add_subdirectory(src)
 
 add_executable(${PROJECT_NAME} ${SOURCE_EXE})
-target_link_libraries(${PROJECT_NAME} lib tag)
+target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets)
+
