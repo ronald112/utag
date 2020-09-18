@@ -8,6 +8,10 @@
 #include <string>
 #include <map>
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+
 #if defined(__cplusplus) && __cplusplus >= 201703L && defined(__has_include)
 #if __has_include(<filesystem>)
 #define GHC_USE_STD_FS
@@ -24,3 +28,5 @@ namespace fs = ghc::filesystem;
 #include <tag.h>
 #include <fileref.h>
 #include <tpropertymap.h>
+#include <tlist.h>
+#include <tfile.h>

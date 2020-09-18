@@ -8,19 +8,23 @@ add_compile_options(
 )
 
 # MACRO to add all directories in result
-MACRO(SUBDIRLIST firstdir result curdir)
-    FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+MACRO(SUBDIRLIST result firstdir curdir)
+    file(GLOB ENDF6_SRC_TOP RELATIVE
+        ${curdir} ${curdir}/*)
+    file(GLOB_RECURSE ENDF6_SRC_NESTED ${curdir}/*)
+    set(children ${ENDF6_SRC_TOP} ${ENDF6_SRC_NESTED})
+
     SET(dirlist "${firstdir}")
     FOREACH(child ${children})
         IF(IS_DIRECTORY ${curdir}/${child})
-        LIST(APPEND dirlist ${curdir}/${child})
+            LIST(APPEND dirlist ${curdir}/${child})
         ENDIF()
     ENDFOREACH()
     SET(${result} ${dirlist})
 ENDMACRO()
 
 function(include_all_files)
-    SUBDIRLIST(${CMAKE_CURRENT_SOURCE_DIR}/../taglib/taglib/ SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR}/../taglib/taglib)
+    SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR}/../3dparty/taglib/taglib/ ${CMAKE_CURRENT_SOURCE_DIR}/../3dparty/taglib/taglib)
 
     FOREACH(subdir ${SUBDIRS})
         include_directories(${subdir})
