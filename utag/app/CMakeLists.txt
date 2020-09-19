@@ -7,8 +7,10 @@ add_compile_options(
     -Wpedantic
 )
 
+set(CMAKE_AUTOMOC ON)
+
 message("## Looking for Qt...")
-find_package(Qt5 REQUIRED Core Qml Widgets)
+find_package(Qt5 REQUIRED Core Qml Widgets Gui)
 if (${Qt5_FOUND})
     message("## Found Qt " ${Qt5_VERSION})
 else()
@@ -44,5 +46,5 @@ include_all_files()
 add_subdirectory(src)
 
 add_executable(${PROJECT_NAME} ${SOURCE_EXE})
-target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
 
