@@ -15,11 +15,12 @@ public:
     ~TagEditor(); // Destructor
 
 private:
-    QPushButton* button_;
-    QTextBrowser* textBrowser_;
     QFileSystemModel* dirmodel;
     QTreeView* treeView;
-    // QMenuBar *menuBar;
+    QMenuBar *m_menuBar;
+
+    QLabel *m_filesFoundLabel;
+    QTableWidget *m_filesTable;
 
 protected:
 #ifndef QT_NO_CONTEXTMENU
@@ -51,7 +52,6 @@ private slots:
     void newFile();
     void open();
     void save();
-    void exit();
     // void undo();
     // void redo();
     // void cut();

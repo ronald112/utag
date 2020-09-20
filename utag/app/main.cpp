@@ -35,6 +35,4 @@ int main(int argc, char *argv[]) {
 
     // run the application and return execs() return value/code
     return a.exec();
-
- return 0;
 }
