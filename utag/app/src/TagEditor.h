@@ -19,7 +19,7 @@ private:
     QTextBrowser* textBrowser_;
     QFileSystemModel* dirmodel;
     QTreeView* treeView;
-    QMenuBar *menuBar;
+    // QMenuBar *menuBar;
 
 protected:
 #ifndef QT_NO_CONTEXTMENU
@@ -38,24 +38,25 @@ private:
     QAction *openAct;
     QAction *saveAct;
     QAction *exitAct;
-    QAction *undoAct;
-    QAction *redoAct;
-    QAction *cutAct;
-    QAction *copyAct;
-    QAction *pasteAct;
-    QAction *aboutAct;
-    QAction *aboutQtAct;
+    // QAction *undoAct;
+    // QAction *redoAct;
+    // QAction *cutAct;
+    // QAction *copyAct;
+    // QAction *pasteAct;
+    // QAction *aboutAct;
+    // QAction *aboutQtAct;
     QLabel *infoLabel;
 
 private slots:
     void newFile();
     void open();
     void save();
-    void undo();
-    void redo();
-    void cut();
-    void copy();
-    void paste();
-    void about();
-    void aboutQt();
+    void exit();
+    // void undo();
+    // void redo();
+    // void cut();
+    // void copy();
+    // void paste();
+    // void about();
+    // void aboutQt();
 };

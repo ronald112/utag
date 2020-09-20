@@ -1,4 +1,5 @@
 #include "TagEditor.h"
+#include <iostream>
 
 TagEditor::TagEditor()
 {
@@ -25,9 +26,11 @@ TagEditor::TagEditor()
 
     createActions();
     createMenus();
+    
 
     QString message = tr("A context menu is available by right-clicking");
     statusBar()->showMessage(message);
+
 
     setWindowTitle(tr("uTag"));
     setMinimumSize(260, 400);
@@ -46,36 +49,52 @@ void TagEditor::createActions() {
     connect(openAct, &QAction::triggered, this, &TagEditor::open);
 
     saveAct = new QAction(tr("&Save"), this);
-    saveAct->setShortcuts(QKeySequence::Open);
+    saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save a file"));
     connect(saveAct, &QAction::triggered, this, &TagEditor::save);
 
-    exitAct = new QAction(tr("&Save"), this);
-    exitAct->setShortcuts(QKeySequence::Open);
-    exitAct->setStatusTip(tr("Save a file"));
-    connect(exitAct, &QAction::triggered, this, &TagEditor::save);
+    exitAct = new QAction(tr("&Exit"), this);
+    exitAct->setShortcuts(QKeySequence::Quit);
+    exitAct->setStatusTip(tr("Exit"));
+    connect(exitAct, &QAction::triggered, this, &QCoreApplication::exit);
+}
 
+void TagEditor::newFile() {
+
+}
+
+void TagEditor::open() {
+    
+}
+
+void TagEditor::save() {
+    
+}
+
+void TagEditor::exit() {
+    
 }
 
 
 void TagEditor::createMenus()
 {
-    fileMenu = menuBar->addMenu(tr("&File"));;
+    // std::cerr << "[dbg 1]\n";
+    fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(newAct);
     fileMenu->addAction(openAct);
     fileMenu->addAction(saveAct);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAct);
-    
+    menuBar()->setNativeMenuBar(false);
 }
 
 #ifndef QT_NO_CONTEXTMENU
 void TagEditor::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
-    menu.addAction(cutAct);
-    menu.addAction(copyAct);
-    menu.addAction(pasteAct);
+    // menu.addAction(cutAct);
+    // menu.addAction(copyAct);
+    // menu.addAction(pasteAct);
     menu.exec(event->globalPos());
 }
 #endif // QT_NO_CONTEXTMENU
