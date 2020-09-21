@@ -19,12 +19,13 @@ private:
     void createLayouts();
     void createTreeView();
     void createActions();
+    void openFileOfItem();
+    void treeDoubleClick();
 
     QString m_projectPath;
     QWidget* mainWidget;
     QFileSystemModel* dirmodel;
     QTreeView* treeView;
-    // QMenuBar *m_menuBar;
     QLabel *m_filesFoundLabel;
     QTableWidget *m_filesTable;
     QPushButton* saveButton;
