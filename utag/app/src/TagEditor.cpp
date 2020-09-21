@@ -3,11 +3,26 @@
 
 TagEditor::TagEditor()
 {
-    QWidget *widget = new QWidget;
-    setCentralWidget(widget);
+    mainWidget = new QWidget;
+    setCentralWidget(mainWidget);
+    m_projectPath = QFileSystemModel().rootDirectory().absolutePath();
 
-    m_menuBar = new QMenuBar(this);
+    createTreeView();
+    createButtons();
+    createLayouts();
 
+    connect(new QShortcut(QKeySequence::Quit, this), &QShortcut::activated,
+        qApp, &QApplication::quit);
+    // shortcut to fast quit
+    QString message = tr("A context menu is available by right-clicking");
+    statusBar()->showMessage(message);
+
+    setWindowTitle(tr("uTag"));
+    setMinimumSize(800, 500);
+    resize(800, 500);
+}
+
+void TagEditor::createTreeView() {
     treeView = new QTreeView(this);
     dirmodel = new QFileSystemModel(this);
     dirmodel->setRootPath("");
@@ -23,63 +38,66 @@ TagEditor::TagEditor()
     infoLabel = new QLabel(tr("<i>(nothing to display)</i>"));
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
-
-    QVBoxLayout* layoutV = new QVBoxLayout();
-    m_filesTable = new QTableWidget(this);
-    m_filesFoundLabel = new QLabel(tr("<i>0 files</i>"));
-
-    layoutV->addWidget(m_menuBar);
-    layoutV->addWidget(m_filesFoundLabel);
-    layoutV->addWidget(m_filesTable);
-    layoutV->addWidget(infoLabel);
-
-    QHBoxLayout *layoutH = new QHBoxLayout();
-    layoutH->setMargin(7);
-    layoutH->setSpacing(3);
-    layoutH->addWidget(treeView);
-    layoutH->addLayout(layoutV);
-    widget->setLayout(layoutH);
-
-    createActions();
-    createMenus();
-    
-
-    QString message = tr("A context menu is available by right-clicking");
-    statusBar()->showMessage(message);
-
-
-    setWindowTitle(tr("uTag"));
-    setMinimumSize(800, 500);
-    resize(800, 500);
 }
 
-void TagEditor::createActions() {
-    newAct = new QAction(tr("&New"), this);
-    newAct->setShortcuts(QKeySequence::New);
-    newAct->setStatusTip(tr("Create a new file"));
-    connect(newAct, &QAction::triggered, this, &TagEditor::newFile);
+void TagEditor::createButtons() {
+    // create menu buttons
+    saveButton = new QPushButton(this);
+    undoButton = new QPushButton(this);
+    redoButton = new QPushButton(this);
+    aboutButton = new QPushButton(this);
+    aboutQtButton = new QPushButton(this);
 
-    openAct = new QAction(tr("&Open"), this);
-    openAct->setShortcuts(QKeySequence::Open);
-    openAct->setStatusTip(tr("Open a file"));
-    connect(openAct, &QAction::triggered, this, &TagEditor::open);
+    // customize buttons
+    saveButton->setFixedWidth(40);
+    saveButton->setIconSize(QSize(15, 15));
+    saveButton->setIcon(QIcon(m_projectPath + "/resources/save.png"));
+    undoButton->setFixedWidth(40);
+    undoButton->setIconSize(QSize(15, 15));
+    undoButton->setIcon(QIcon(m_projectPath + "/resources/undo.png"));
+    redoButton->setFixedWidth(40);
+    redoButton->setIconSize(QSize(15, 15));
+    redoButton->setIcon(QIcon(m_projectPath + "/resources/redo.png"));
+    aboutButton->setFixedWidth(40);
+    aboutButton->setIconSize(QSize(15, 15));
+    aboutButton->setIcon(QIcon(m_projectPath + "/resources/about.png"));
+    aboutQtButton->setFixedWidth(40);
+    aboutQtButton->setIconSize(QSize(15, 15));
+    aboutQtButton->setIcon(QIcon(m_projectPath + "/resources/about_qt.png"));
 
-    saveAct = new QAction(tr("&Save"), this);
-    saveAct->setShortcuts(QKeySequence::Save);
-    saveAct->setStatusTip(tr("Save a file"));
-    connect(saveAct, &QAction::triggered, this, &TagEditor::save);
+    // connect menu buttons
+    connect(saveButton, &QAbstractButton::clicked, this, &TagEditor::save);
+    connect(undoButton, &QAbstractButton::clicked, this, &TagEditor::undo);
+    connect(redoButton, &QAbstractButton::clicked, this, &TagEditor::redo);
+    connect(aboutButton, &QAbstractButton::clicked, this, &TagEditor::about);
+    connect(aboutQtButton, &QAbstractButton::clicked, this, &QApplication::aboutQt);
 
-    exitAct = new QAction(tr("&Exit"), this);
-    exitAct->setShortcuts(QKeySequence::Quit);
-    exitAct->setStatusTip(tr("Exit"));
-    connect(exitAct, &QAction::triggered, this, &QCoreApplication::exit);
-}
+    // set up shortcuts
+    saveButton->setShortcut(QKeySequence::Save);
+    undoButton->setShortcut(QKeySequence::Undo);
+    redoButton->setShortcut(QKeySequence::Redo);
 
-void TagEditor::newFile() {
-
+    // set up tips
+    aboutQtButton->setStatusTip(tr("Show the Qt library's About box"));
+    aboutButton->setStatusTip(tr("Show the Application's About box"));
+    saveButton->setStatusTip(tr("Save a file"));
+    undoButton->setStatusTip(tr("Undo changes"));
+    redoButton->setStatusTip(tr("Redo changes"));
 }
 
 void TagEditor::open() {
+    
+}
+
+void TagEditor::undo() {
+    
+}
+
+void TagEditor::redo() {
+    
+}
+
+void TagEditor::about() {
     
 }
 
@@ -87,28 +105,33 @@ void TagEditor::save() {
     
 }
 
-void TagEditor::createMenus()
+void TagEditor::createLayouts()
 {
-    fileMenu = m_menuBar->addMenu(tr("&File"));
-    fileMenu->addAction(newAct);
-    fileMenu->addAction(openAct);
-    fileMenu->addAction(saveAct);
-    fileMenu->addSeparator();
-    fileMenu->addAction(exitAct);
-    m_menuBar->setNativeMenuBar(false);
-    m_menuBar->show();
-}
+    QVBoxLayout* layoutV = new QVBoxLayout();
+    QHBoxLayout* layoutButttons = new QHBoxLayout();
+    m_filesTable = new QTableWidget(this);
+    m_filesFoundLabel = new QLabel(tr("<i>0 files</i>"));
 
-#ifndef QT_NO_CONTEXTMENU
-void TagEditor::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu menu(this);
-    // menu.addAction(cutAct);
-    // menu.addAction(copyAct);
-    // menu.addAction(pasteAct);
-    menu.exec(event->globalPos());
+    layoutButttons->setAlignment(Qt::AlignLeft);
+    layoutButttons->addWidget(saveButton);
+    layoutButttons->addWidget(undoButton);
+    layoutButttons->addWidget(redoButton);
+    layoutButttons->addWidget(aboutButton);
+    layoutButttons->addWidget(aboutQtButton);
+
+    layoutV->addLayout(layoutButttons);
+    layoutV->addWidget(m_filesFoundLabel);
+    layoutV->addWidget(m_filesTable);
+    layoutV->addWidget(infoLabel, Qt::AlignBottom);
+
+    QHBoxLayout *layoutH = new QHBoxLayout();
+    layoutH->setMargin(7);
+    layoutH->setSpacing(3);
+    layoutH->addWidget(treeView);
+    layoutH->addLayout(layoutV);
+    mainWidget->setLayout(layoutH);
+
 }
-#endif // QT_NO_CONTEXTMENU
 
 TagEditor::~TagEditor() {
 }

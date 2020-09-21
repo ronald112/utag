@@ -8,6 +8,7 @@ add_compile_options(
 )
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 message("## Looking for Qt...")
 find_package(Qt5 REQUIRED Core Qml Widgets Gui)
