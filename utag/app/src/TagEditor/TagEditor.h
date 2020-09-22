@@ -39,8 +39,6 @@ private:
     QPushButton* aboutButton;
     QPushButton* aboutQtButton;
 
-
-    QActionGroup *alignmentGroup;
     QLabel *infoLabel;
 
 private slots:

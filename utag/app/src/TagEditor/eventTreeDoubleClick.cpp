@@ -9,21 +9,17 @@ void TagEditor::treeDoubleClick() {
         msgBox.exec();
         return;
     }
-    // dirmodel->fileInfo(index).absolutePath()
-    // QString name = QInputDialog::getText(this, "Name", "Enter directory name");
-    // if (name.isEmpty()) return;
-    // index.data(0).toString()
     QString audioFilePath = dirmodel->fileInfo(index).absoluteFilePath();
 
     if (dirmodel->fileInfo(index).isDir()
-        && (QMessageBox::question(this, tr("uTag"),
-            tr("Do you want try to open this directory?")
-            + dirmodel->fileInfo(index).fileName(),
-            QMessageBox::Ok | QMessageBox::Cancel,
-            QMessageBox::Ok) == QMessageBox::Ok)) {
+    && (QMessageBox::question(this, tr("uTag"),
+        tr("Do you want try to open this directory?\n")
+        + dirmodel->fileInfo(index).fileName(),
+        QMessageBox::Ok | QMessageBox::Cancel,
+        QMessageBox::Ok) == QMessageBox::Ok)) {
+
         QDirIterator subs(dirmodel->fileInfo(index).absoluteFilePath(),
             QDir::NoDotAndDotDot | QDir::Files | QDir::NoSymLinks, QDirIterator::Subdirectories);
-
         m_filesTable->clearContents();
         m_filesTable->setRowCount(0);
         while(subs.hasNext())

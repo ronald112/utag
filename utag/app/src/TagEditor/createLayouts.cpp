@@ -16,11 +16,15 @@ void TagEditor::createLayouts()
     layoutButttons->addWidget(aboutButton);
     layoutButttons->addWidget(aboutQtButton);
 
+    m_filesTable->setSortingEnabled(true);
     m_filesTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    m_filesTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_filesTable->setHorizontalHeaderLabels(QStringList({"Artist", "Title", "Album", "Genre", "Path"}));
     m_filesTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     m_filesTable->verticalHeader()->hide();
     m_filesTable->setShowGrid(false);
+    m_filesTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     connect(m_filesTable, &QTableWidget::doubleClicked,
             this, &TagEditor::openFileOfItem);
 
@@ -31,8 +35,8 @@ void TagEditor::createLayouts()
 
     layoutH->setMargin(7);
     layoutH->setSpacing(3);
-    layoutH->addWidget(treeView);
-    layoutH->addLayout(layoutV);
+    layoutH->addWidget(treeView, Qt::AlignLeft);
+    layoutH->addLayout(layoutV, Qt::AlignLeft);
 
     mainWidget->setLayout(layoutH);
 }
