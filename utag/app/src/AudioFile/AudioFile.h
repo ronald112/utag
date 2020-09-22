@@ -15,6 +15,10 @@ public:
     int getMinutes();
 
     void prettyConsoleOutput();
+
+    bool isNull();
+
+    string getProperty(const string &key);
 private:
     TagLib::FileRef m_f;
 };

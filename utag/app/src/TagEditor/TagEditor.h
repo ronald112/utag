@@ -2,6 +2,7 @@
 
 #include <QtWidgets>
 #include <QtCore>
+#include <AudioFile/AudioFile.h>
 
 class QPushButton;
 class QTextBrowser;
@@ -21,6 +22,10 @@ private:
     void createActions();
     void openFileOfItem();
     void treeDoubleClick();
+    void addItemToTable(QString &&filePath, QString &&fileName);
+
+    int row = 0;
+    int column = 0;
 
     QString m_projectPath;
     QWidget* mainWidget;
