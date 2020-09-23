@@ -22,13 +22,25 @@ private:
     void createActions();
     void openFileOfItem();
     void treeDoubleClick();
-    void addItemToTable(QString &&filePath, QString &&fileName);
+    void addItemToTable(QString &&qfilePath, QString &&qfileName);
+    void addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName);
+    void createEditSongLayout();
 
     int row = 0;
     int column = 0;
 
+    QFormLayout *editSongLayout;
+
+    QSplitter* contentVSplitter;
+    QWidget* rightTopWidget;
+    QWidget* rightBotWidget;
+    QWidget* buttonWidget;
+    QVBoxLayout* topVLayout;
+    QHBoxLayout* butttonLayout;
+    QVBoxLayout* botLayout;
+
+    QSplitter* mainSplitter;
     QString m_projectPath;
-    QWidget* mainWidget;
     QFileSystemModel* dirmodel;
     QTreeView* treeView;
     QLabel *m_filesFoundLabel;
@@ -42,7 +54,6 @@ private:
     QLabel *infoLabel;
 
 private slots:
-    void open();
     void save();
     void undo();
     void redo();

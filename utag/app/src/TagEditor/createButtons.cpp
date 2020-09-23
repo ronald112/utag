@@ -10,19 +10,19 @@ void TagEditor::createButtons() {
     aboutQtButton = new QPushButton(this);
 
     // customize buttons
-    saveButton->setFixedWidth(40);
+    saveButton->setFixedWidth(30);
     saveButton->setIconSize(QSize(15, 15));
     saveButton->setIcon(QIcon(m_projectPath + "/resources/save.png"));
-    undoButton->setFixedWidth(40);
+    undoButton->setFixedWidth(30);
     undoButton->setIconSize(QSize(15, 15));
     undoButton->setIcon(QIcon(m_projectPath + "/resources/undo.png"));
-    redoButton->setFixedWidth(40);
+    redoButton->setFixedWidth(30);
     redoButton->setIconSize(QSize(15, 15));
     redoButton->setIcon(QIcon(m_projectPath + "/resources/redo.png"));
-    aboutButton->setFixedWidth(40);
+    aboutButton->setFixedWidth(30);
     aboutButton->setIconSize(QSize(15, 15));
     aboutButton->setIcon(QIcon(m_projectPath + "/resources/about.png"));
-    aboutQtButton->setFixedWidth(40);
+    aboutQtButton->setFixedWidth(30);
     aboutQtButton->setIconSize(QSize(15, 15));
     aboutQtButton->setIcon(QIcon(m_projectPath + "/resources/about_qt.png"));
 

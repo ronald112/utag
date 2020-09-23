@@ -8,8 +8,7 @@ void TagEditor::createTreeView() {
     treeView->setModel(dirmodel);
     treeView->setRootIndex(dirmodel->index(QDir::homePath()));
     treeView->setExpandsOnDoubleClick(false);
-    treeView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    treeView->setMinimumWidth(350);
+    treeView->setMinimumWidth(250);
     treeView->header()->hideSection(2);
     treeView->setColumnWidth(0, 160);
     treeView->setColumnWidth(1, 80);

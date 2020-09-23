@@ -9,16 +9,18 @@ void TagEditor::treeDoubleClick() {
         msgBox.exec();
         return;
     }
-    QString audioFilePath = dirmodel->fileInfo(index).absoluteFilePath();
+    addItemToTableHandler(dirmodel->fileInfo(index).isDir(),
+                        dirmodel->fileInfo(index).absoluteFilePath(),
+                        dirmodel->fileInfo(index).fileName());
+}
 
-    if (dirmodel->fileInfo(index).isDir()
-    && (QMessageBox::question(this, tr("uTag"),
+void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName) {
+    if (isDir && (QMessageBox::question(this, tr("uTag"),
         tr("Do you want try to open this directory?\n")
-        + dirmodel->fileInfo(index).fileName(),
-        QMessageBox::Ok | QMessageBox::Cancel,
+        + fileName, QMessageBox::Ok | QMessageBox::Cancel,
         QMessageBox::Ok) == QMessageBox::Ok)) {
 
-        QDirIterator subs(dirmodel->fileInfo(index).absoluteFilePath(),
+        QDirIterator subs(absoluteFilePath,
             QDir::NoDotAndDotDot | QDir::Files | QDir::NoSymLinks, QDirIterator::Subdirectories);
         m_filesTable->clearContents();
         m_filesTable->setRowCount(0);
@@ -30,7 +32,7 @@ void TagEditor::treeDoubleClick() {
         addItemToTable(subs.filePath(), subs.fileName());
     }
     else {
-        addItemToTable(std::move(audioFilePath), dirmodel->fileInfo(index).fileName());
+        addItemToTable(std::move(absoluteFilePath), std::move(fileName));
     }
 }
 
@@ -43,6 +45,9 @@ void TagEditor::addItemToTable(QString &&qfilePath, QString &&qfileName) {
         if(a.isNull()) {
             row = m_filesTable->rowCount();
             m_filesTable->insertRow(row);
+            // if (row % 2 == 0) {
+            //     m_filesTable->setFrameStyle();
+            // }
             QTableWidgetItem *filename = new QTableWidgetItem(tr(a.getProperty("ARTIST").c_str()));
             QTableWidgetItem *TITLE = new QTableWidgetItem(tr(a.getProperty("TITLE").c_str()));
             QTableWidgetItem *ALBUM = new QTableWidgetItem(tr(a.getProperty("ALBUM").c_str()));

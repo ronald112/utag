@@ -4,8 +4,8 @@
 TagEditor::TagEditor()
 {
     setlocale(LC_ALL, "");
-    mainWidget = new QWidget(this);
-    setCentralWidget(mainWidget);
+    mainSplitter = new QSplitter(Qt::Horizontal, this);
+    setCentralWidget(mainSplitter);
     m_projectPath = QFileSystemModel(this).rootDirectory().absolutePath();
 
     createTreeView();
@@ -19,28 +19,14 @@ TagEditor::TagEditor()
     statusBar()->showMessage(message);
 
     setWindowTitle(tr("uTag"));
-    setMinimumSize(1200, 500);
-    resize(1200, 500);
-}
-
-void TagEditor::openFileOfItem() {
-    // const QTableWidgetItem *item = m_filesTable->item(row, 0);
-    QMessageBox msgBox;
-    msgBox.setText("Interacting with file table");
-    msgBox.exec();
-    // openFile(item->data(1).toString());
+    setMinimumSize(1000, 500);
+    resize(1000, 500);
 }
 
 // static inline void openFile(const QString &fileName)
 // {
 //     QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
 // }
-
-
-
-void TagEditor::open() {
-    
-}
 
 void TagEditor::undo() {
     
