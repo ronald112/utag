@@ -40,10 +40,5 @@ void TagEditor::about() {
     
 }
 
-void TagEditor::save() {
-    
-}
-
-
 TagEditor::~TagEditor() {
 }

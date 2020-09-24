@@ -1,8 +1,7 @@
 #include "TagEditor.h"
 #include <MiscHeaders.h>
 
-void TagEditor::createLayouts()
-{
+void TagEditor::createLayouts() {
     contentVSplitter = new QSplitter(Qt::Vertical, mainSplitter);
     rightTopWidget = new QWidget(contentVSplitter);
     rightBotWidget = new QWidget(contentVSplitter);
@@ -30,8 +29,8 @@ void TagEditor::createLayouts()
     m_filesTable->setShowGrid(true);
     m_filesTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    connect(m_filesTable, &QTableWidget::doubleClicked,
-            this, &TagEditor::openFileOfItem);
+    connect(m_filesTable, SIGNAL(cellDoubleClicked(int,int)),
+            this, SLOT(eventOpenFileFromTable(int)));
 
     topVLayout->setMargin(0);
     topVLayout->setSpacing(0);
@@ -55,24 +54,26 @@ void TagEditor::createLayouts()
 }
 
 void TagEditor::createEditSongLayout() {
+    editSongWidget = new QWidget(contentVSplitter);
+    editSongLayout = new QFormLayout(editSongWidget);
+    editSongWidget->hide();
+    lineEditArtist = new QLineEdit();
+    lineEditTitle = new QLineEdit();
+    lineEditAlbum = new QLineEdit();
+    lineEditGenre = new QLineEdit();
+    lineEditFilePath = new QLineEdit();
     QLabel *label1 = new QLabel("Artist");
-    QLineEdit *lineEdit1 = new QLineEdit();
     QLabel *label2 = new QLabel("Title");
-    QLineEdit *lineEdit2 = new QLineEdit();
     QLabel *label3 = new QLabel("Album");
-    QLineEdit *lineEdit3 = new QLineEdit();
-    QLabel *label4 = new QLabel("Album");
-    QLineEdit *lineEdit4 = new QLineEdit();
-    QLabel *label5 = new QLabel("Album");
-    QLineEdit *lineEdit5 = new QLineEdit();
+    QLabel *label4 = new QLabel("Genre");
+    QLabel *label5 = new QLabel("Path");
 
-    editSongLayout = new QFormLayout();
-    editSongLayout->addRow(label1, lineEdit1);
-    editSongLayout->addRow(label2, lineEdit2);
-    editSongLayout->addRow(label3, lineEdit3);
-    editSongLayout->addRow(label4, lineEdit4);
-    editSongLayout->addRow(label5, lineEdit5);
-    // rightBotWidget->setLayout(editSongLayout);
+    editSongLayout->addRow(label1, lineEditArtist);
+    editSongLayout->addRow(label2, lineEditTitle);
+    editSongLayout->addRow(label3, lineEditAlbum);
+    editSongLayout->addRow(label4, lineEditGenre);
+    editSongLayout->addRow(label5, lineEditFilePath);
+    botLayout->addWidget(editSongWidget, Qt::AlignTop);
 }
 
 

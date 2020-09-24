@@ -1,17 +1,77 @@
 #include "AudioFile.h"
 
-AudioFile::AudioFile(TagLib::FileRef f) : m_f(f) {
+void checkForRejectedProperties(const TagLib::PropertyMap &tags)
+{ // stolen from tagreader.cpp
+  if(tags.size() > 0) {
+    unsigned int longest = 0;
+    for(TagLib::PropertyMap::ConstIterator i = tags.begin(); i != tags.end(); ++i) {
+      if(i->first.size() > longest) {
+        longest = i->first.size();
+      }
+    }
+    cout << "-- rejected TAGs (properties) --" << endl;
+    for(TagLib::PropertyMap::ConstIterator i = tags.begin(); i != tags.end(); ++i) {
+      for(TagLib::StringList::ConstIterator j = i->second.begin(); j != i->second.end(); ++j) {
+        cout << left << std::setw(longest) << i->first << " - " << '"' << *j << '"' << endl;
+      }
+    }
+  }
+}
+
+AudioFile::AudioFile(TagLib::FileRef f, const string &_filePath) : filePath(_filePath), m_f(f) {
     if (!m_f.isNull() && m_f.tag()) {
         TagLib::PropertyMap tags = m_f.file()->properties();
 
         for(TagLib::PropertyMap::ConstIterator i = tags.begin(); i != tags.end(); ++i) {
             for(TagLib::StringList::ConstIterator j = i->second.begin(); j != i->second.end(); ++j) {
-                // string key = ;
-                // m_properties.insert(string((i->first).toCString()), string((*j).toCString()));
                 m_properties[string((i->first).toCString())] = string((*j).toCString());
             }
         }
     }
+}
+
+/*
+*"-t <title>"  
+*"-a <artist>" 
+*"-A <album>"  
+*"-c <comment>"
+*"-g <genre>"  
+*"-y <year>"   
+*"-T <track>"  
+*"-D <tagname>"
+*/
+void AudioFile::saveFieldWithValue(char field, string value) {
+    TagLib::Tag *t = m_f.tag();
+
+    switch (field) {
+    case 't':
+        t->setTitle(value);
+    break;
+    case 'a':
+        t->setArtist(value);
+    break;
+    case 'A':
+        t->setAlbum(value);
+    break;
+    case 'c':
+        t->setComment(value);
+    break;
+    case 'g':
+        t->setGenre(value);
+    break;
+    case 'y':
+        t->setYear(std::stoi(value));
+    break;
+    case 'T':
+        t->setTrack(std::stoi(value));
+    break;
+    case 'D':
+        TagLib::PropertyMap map = m_f.file()->properties();
+        map.erase(value);
+        checkForRejectedProperties(m_f.file()->setProperties(map));
+    break;
+    }
+    m_f.file()->save();
 }
 
 /*

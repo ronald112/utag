@@ -20,16 +20,23 @@ private:
     void createLayouts();
     void createTreeView();
     void createActions();
-    void openFileOfItem();
     void treeDoubleClick();
     void addItemToTable(QString &&qfilePath, QString &&qfileName);
     void addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName);
     void createEditSongLayout();
 
-    int row = 0;
-    int column = 0;
+    std::map<const std::string, AudioFile> audioFilesMap;
+
+    QString curEditableFilePath;
+    int curSelectedRow = -1;
 
     QFormLayout *editSongLayout;
+    QWidget* editSongWidget;
+    QLineEdit *lineEditArtist;
+    QLineEdit *lineEditTitle;
+    QLineEdit *lineEditAlbum;
+    QLineEdit *lineEditGenre;
+    QLineEdit *lineEditFilePath;
 
     QSplitter* contentVSplitter;
     QWidget* rightTopWidget;
@@ -57,6 +64,7 @@ private slots:
     void save();
     void undo();
     void redo();
+    void eventOpenFileFromTable(int row);
     // void cut();
     // void copy();
     // void paste();
