@@ -4,6 +4,14 @@
 void TagEditor::createTreeView() {
     dirmodel = new QFileSystemModel(this);
     dirmodel->setRootPath(QDir::homePath());
+
+    QStringList filters;
+    filters << "*.mp3" << "*.ogg" << "*.oga" << "*.mogg" << "*.flac"
+        << "*.mpc" << "*.wav" << "*.mp4" << "*.asf" << "*.tta" << "*.aiff"
+        << "*.spx" << "*.wv";
+    dirmodel->setNameFilters(filters);
+    dirmodel->setNameFilterDisables(false);
+
     treeView = new QTreeView(this);
     treeView->setModel(dirmodel);
     treeView->setRootIndex(dirmodel->index(QDir::homePath()));
