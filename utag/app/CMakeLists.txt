@@ -46,6 +46,6 @@ endfunction()
 include_all_files()
 add_subdirectory(src)
 
-add_executable(${PROJECT_NAME} ${SOURCE_EXE})
+add_executable(${PROJECT_NAME} ${SOURCE_EXE} ${APP_ICON_RESOURCE_WINDOWS})
 target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
 
