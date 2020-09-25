@@ -20,6 +20,8 @@ public:
 
     bool isNull();
 
+    void getAlbumArt();
+
     string getProperty(const string &key);
     string filePath;
     string fileName;

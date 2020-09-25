@@ -15,12 +15,18 @@ void TagEditor::treeDoubleClick() {
 }
 
 void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName) {
+    if (QFileInfo(QDir::homePath()).owner() != QFileInfo(absoluteFilePath).owner()) {
+        QMessageBox::warning(this, tr("uTag"),
+            tr("You  have no rights to open this folder:\n")
+            + fileName, QMessageBox::Ok);
+        return;
+    }
+
     m_filesTable->setSortingEnabled(false);
     if (isDir && (QMessageBox::question(this, tr("uTag"),
         tr("Do you want try to open this directory?\n")
         + fileName, QMessageBox::Ok | QMessageBox::Cancel,
         QMessageBox::Ok) == QMessageBox::Ok)) {
-
         QDirIterator subs(absoluteFilePath,
             QDir::NoDotAndDotDot | QDir::Files | QDir::NoSymLinks, QDirIterator::Subdirectories);
         editSongWidget->hide();
@@ -29,6 +35,9 @@ void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QStr
         lineEditAlbum->clear();
         lineEditGenre->clear();
         lineEditFilePath->clear();
+        lineEditYear->clear();
+        lineEditTrack->clear();
+        lineEditComment->clear();
         infoLabel->show();
         audioFilesMap.clear();
         m_filesTable->clearContents();
@@ -47,7 +56,7 @@ void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QStr
 }
 
 void TagEditor::addItemToTable(QString &&qfilePath, QString &&qfileName) {
-    const regex pattern(R"(^.*\.(mp3|flac|waw|ogg)$)");
+    const regex pattern(R"(^.+.(mp3|ogg|oga|mogg|flac|mpc|wav|mp4|asf|tta|aiff|spx|wv)$)");
     cmatch match;
 
     if (std::regex_match(qfileName.toStdString().c_str(), match, pattern)) {
@@ -76,7 +85,7 @@ void TagEditor::addItemToTable(QString &&qfilePath, QString &&qfileName) {
         }
         else {
             QMessageBox::warning(this, tr("uTag"),
-            tr("File ") + qfileName + tr(" already added or doesn't exist"), QMessageBox::Ok | QMessageBox::Cancel);
+            tr("File ") + qfileName + tr(" already added or doesn't exist"), QMessageBox::Ok);
         }
     }
 }

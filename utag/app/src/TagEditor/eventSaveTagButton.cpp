@@ -20,6 +20,15 @@ void TagEditor::save() {
             if (lineEditGenre->isModified()) {
                 edit->second.saveFieldWithValue('g', lineEditGenre->text().toStdString());
             }
+            if (lineEditYear->isModified()) {
+                edit->second.saveFieldWithValue('y', lineEditYear->text().toStdString());
+            }
+            if (lineEditTrack->isModified()) {
+                edit->second.saveFieldWithValue('T', lineEditTrack->text().toStdString());
+            }
+            if (lineEditComment->isModified()) {
+                edit->second.saveFieldWithValue('c', lineEditComment->text().toStdString());
+            }
             m_filesTable->removeRow(curSelectedRow);
             audioFilesMap.erase(edit);
             addItemToTableHandler(false, curEditableFilePath, tr(edit->second.fileName.c_str()));
@@ -29,6 +38,9 @@ void TagEditor::save() {
             lineEditAlbum->clear();
             lineEditGenre->clear();
             lineEditFilePath->clear();
+            lineEditYear->clear();
+            lineEditTrack->clear();
+            lineEditComment->clear();
             infoLabel->show();
         }
     }

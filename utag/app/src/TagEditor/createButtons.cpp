@@ -8,6 +8,7 @@ void TagEditor::createButtons() {
     redoButton = new QPushButton(this);
     aboutButton = new QPushButton(this);
     aboutQtButton = new QPushButton(this);
+    cleanButton = new QPushButton(this);
 
     // customize buttons
     saveButton->setFixedWidth(30);
@@ -25,6 +26,9 @@ void TagEditor::createButtons() {
     aboutQtButton->setFixedWidth(30);
     aboutQtButton->setIconSize(QSize(15, 15));
     aboutQtButton->setIcon(QIcon(m_projectPath + "/resources/about_qt.png"));
+    cleanButton->setFixedWidth(30);
+    cleanButton->setIconSize(QSize(15, 15));
+    cleanButton->setIcon(QIcon(m_projectPath + "/resources/clean.png"));
 
     // connect menu buttons
     connect(saveButton, &QAbstractButton::clicked, this, &TagEditor::save);
@@ -32,6 +36,7 @@ void TagEditor::createButtons() {
     connect(redoButton, &QAbstractButton::clicked, this, &TagEditor::redo);
     connect(aboutButton, &QAbstractButton::clicked, this, &TagEditor::about);
     connect(aboutQtButton, &QAbstractButton::clicked, this, &QApplication::aboutQt);
+    connect(cleanButton, &QAbstractButton::clicked, this, &TagEditor::clean);
 
     // set up shortcuts
     saveButton->setShortcut(QKeySequence::Save);
@@ -44,4 +49,5 @@ void TagEditor::createButtons() {
     saveButton->setStatusTip(tr("Save a file"));
     undoButton->setStatusTip(tr("Undo changes"));
     redoButton->setStatusTip(tr("Redo changes"));
+    cleanButton->setStatusTip(tr("Remove selection"));
 }

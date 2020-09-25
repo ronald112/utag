@@ -16,6 +16,7 @@ public:
     ~TagEditor(); // Destructor
 
 private:
+
     void createButtons();
     void createLayouts();
     void createTreeView();
@@ -24,19 +25,22 @@ private:
     void addItemToTable(QString &&qfilePath, QString &&qfileName);
     void addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName);
     void createEditSongLayout();
+    void cmdLineArgHandler();
 
     std::map<const std::string, AudioFile> audioFilesMap;
 
     QString curEditableFilePath;
     int curSelectedRow = -1;
 
-    QFormLayout *editSongLayout;
     QWidget* editSongWidget;
     QLineEdit *lineEditArtist;
     QLineEdit *lineEditTitle;
     QLineEdit *lineEditAlbum;
     QLineEdit *lineEditGenre;
     QLineEdit *lineEditFilePath;
+    QLineEdit *lineEditComment;
+    QLineEdit *lineEditYear;
+    QLineEdit *lineEditTrack;
 
     QSplitter* contentVSplitter;
     QWidget* rightTopWidget;
@@ -50,13 +54,14 @@ private:
     QString m_projectPath;
     QFileSystemModel* dirmodel;
     QTreeView* treeView;
-    QLabel *m_filesFoundLabel;
+    QLabel *m_plug;
     QTableWidget *m_filesTable;
     QPushButton* saveButton;
     QPushButton* undoButton;
     QPushButton* redoButton;
     QPushButton* aboutButton;
     QPushButton* aboutQtButton;
+    QPushButton* cleanButton;
 
     QLabel *infoLabel;
 
@@ -65,7 +70,7 @@ private slots:
     void undo();
     void redo();
     void eventOpenFileFromTable(int row);
-    // void cut();
+    void clean();
     // void copy();
     // void paste();
     void about();

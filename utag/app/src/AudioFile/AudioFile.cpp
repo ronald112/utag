@@ -18,6 +18,18 @@ void checkForRejectedProperties(const TagLib::PropertyMap &tags)
   }
 }
 
+void AudioFile::getAlbumArt() {
+    if (!m_f.isNull() && m_f.tag()) {
+        TagLib::PropertyMap tags = m_f.file()->properties();
+
+        for(TagLib::PropertyMap::ConstIterator i = tags.begin(); i != tags.end(); ++i) {
+            for(TagLib::StringList::ConstIterator j = i->second.begin(); j != i->second.end(); ++j) {
+                cout << left << std::setw(4) << i->first << " - " << '"' << *j << '"' << endl;
+            }
+        }
+    }
+}
+
 AudioFile::AudioFile(TagLib::FileRef f, const string &_filePath) : filePath(_filePath), m_f(f) {
     if (!m_f.isNull() && m_f.tag()) {
         TagLib::PropertyMap tags = m_f.file()->properties();
@@ -75,17 +87,17 @@ void AudioFile::saveFieldWithValue(char field, string value) {
 }
 
 /*
-* TITLE
-* ALBUM
-* ARTIST
-* ALBUMARTIST
-* SUBTITLE
-* TRACKNUMBER
-* DISCNUMBER
-* DATE
-* ORIGINALDATE
-* GENRE
-* COMMENT
+*"TITLE"
+*"ALBUM"
+*"ARTIST"
+*"ALBUMARTIST"
+*"SUBTITLE"
+*"TRACKNUMBER"
+*"DISCNUMBER"
+*"DATE"
+*"ORIGINALDATE"
+*"GENRE"
+*"COMMENT"
 */
 string AudioFile::getProperty(const string &key) {
     try {
