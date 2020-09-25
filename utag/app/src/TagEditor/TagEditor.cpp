@@ -75,6 +75,7 @@ void TagEditor::clean() {
     lineEditYear->clear();
     lineEditTrack->clear();
     lineEditComment->clear();
+    imageLabel->clear();
     editSongWidget->hide();
     infoLabel->show();
 }

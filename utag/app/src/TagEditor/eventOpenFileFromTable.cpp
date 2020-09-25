@@ -7,7 +7,6 @@ void TagEditor::eventOpenFileFromTable(int row) {
     auto it = audioFilesMap.find(filePath);
 
     if (it != audioFilesMap.end()) {
-        it->second.getAlbumArt();
         infoLabel->hide();
         lineEditArtist->clear();
         lineEditTitle->clear();
@@ -17,6 +16,17 @@ void TagEditor::eventOpenFileFromTable(int row) {
         lineEditYear->clear();
         lineEditTrack->clear();
         lineEditComment->clear();
+        imageLabel->clear();
+        QPixmap pixmap;
+        QImage image = it->second.getAlbumArt();
+        image = image.scaled(100, 100);
+        pixmap = pixmap.fromImage(image);
+        if (image.sizeInBytes() > 0 && pixmap.isNull() == false) {
+            imageLabel->setPixmap(pixmap);
+        }
+        else {
+            imageLabel->setText("No Image");
+        }
         lineEditArtist->setText(tr(it->second.getProperty("ARTIST").c_str()));
         lineEditTitle->setText(tr(it->second.getProperty("TITLE").c_str()));
         lineEditAlbum->setText(tr(it->second.getProperty("ALBUM").c_str()));

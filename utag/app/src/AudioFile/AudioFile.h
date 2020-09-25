@@ -1,4 +1,5 @@
 #include <MiscHeaders.h>
+#include <QImage>
 
 using namespace std;
 
@@ -20,11 +21,16 @@ public:
 
     bool isNull();
 
-    void getAlbumArt();
+    QImage getAlbumArt();
 
     string getProperty(const string &key);
     string filePath;
     string fileName;
 private:
+    QImage APECase(TagLib::APE::Tag* tag);
+    QImage ID3Case(TagLib::ID3v2::Tag* tag);
+    QImage ASFCase(TagLib::ASF::File* file);
+    QImage FLACCase(TagLib::FLAC::File* file);
+    QImage MP4Case(TagLib::MP4::File* file);
     TagLib::FileRef m_f;
 };

@@ -62,6 +62,7 @@ private:
     QPushButton* aboutButton;
     QPushButton* aboutQtButton;
     QPushButton* cleanButton;
+    QLabel* imageLabel;
 
     QLabel *infoLabel;
 

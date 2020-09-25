@@ -38,6 +38,7 @@ void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QStr
         lineEditYear->clear();
         lineEditTrack->clear();
         lineEditComment->clear();
+        imageLabel->clear();
         infoLabel->show();
         audioFilesMap.clear();
         m_filesTable->clearContents();

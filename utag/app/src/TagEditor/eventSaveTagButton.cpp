@@ -41,6 +41,7 @@ void TagEditor::save() {
             lineEditYear->clear();
             lineEditTrack->clear();
             lineEditComment->clear();
+            imageLabel->clear();
             infoLabel->show();
         }
     }

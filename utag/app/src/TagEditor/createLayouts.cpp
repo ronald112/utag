@@ -59,14 +59,14 @@ void TagEditor::createEditSongLayout() {
     QGridLayout* editSongGridLayout = new QGridLayout(editSongWidget);
     // QFormLayout* editSongLayout = new QFormLayout;
     editSongWidget->hide();
-    lineEditArtist = new QLineEdit();
-    lineEditTitle = new QLineEdit();
-    lineEditAlbum = new QLineEdit();
-    lineEditGenre = new QLineEdit();
-    lineEditFilePath = new QLineEdit();
-    lineEditYear = new QLineEdit();
-    lineEditTrack = new QLineEdit();
-    lineEditComment = new QLineEdit();
+    lineEditArtist = new QLineEdit(contentVSplitter);
+    lineEditTitle = new QLineEdit(contentVSplitter);
+    lineEditAlbum = new QLineEdit(contentVSplitter);
+    lineEditGenre = new QLineEdit(contentVSplitter);
+    lineEditFilePath = new QLineEdit(contentVSplitter);
+    lineEditYear = new QLineEdit(contentVSplitter);
+    lineEditTrack = new QLineEdit(contentVSplitter);
+    lineEditComment = new QLineEdit(contentVSplitter);
     QLabel *label1 = new QLabel("Artist");
     QLabel *label2 = new QLabel("Title");
     QLabel *label3 = new QLabel("Album");
@@ -75,6 +75,7 @@ void TagEditor::createEditSongLayout() {
     QLabel *label6 = new QLabel("Year");
     QLabel *label7 = new QLabel("Track");
     QLabel *label8 = new QLabel("Comment");
+    imageLabel = new QLabel();
 
     editSongGridLayout->addWidget(label1, 0, 0);
     editSongGridLayout->addWidget(lineEditArtist, 0, 1);
@@ -92,6 +93,7 @@ void TagEditor::createEditSongLayout() {
     editSongGridLayout->addWidget(lineEditTrack, 1, 3);
     editSongGridLayout->addWidget(label8, 2, 2);
     editSongGridLayout->addWidget(lineEditComment, 2, 3);
+    editSongGridLayout->addWidget(imageLabel, 0, 4, 4, 1);
     botLayout->addWidget(editSongWidget, Qt::AlignTop);
 }
 
