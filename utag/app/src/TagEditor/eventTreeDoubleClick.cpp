@@ -2,16 +2,16 @@
 #include <MiscHeaders.h>
 
 void TagEditor::treeDoubleClick() {
-    QModelIndex index = treeView->currentIndex();
+    QModelIndex index = m_treeView->currentIndex();
 
     if (!index.isValid()) {
         QMessageBox msgBox(QMessageBox::Icon::Question, "Get folder index error", "Get folder index error");
         msgBox.exec();
         return;
     }
-    addItemToTableHandler(dirmodel->fileInfo(index).isDir(),
-                        dirmodel->fileInfo(index).absoluteFilePath(),
-                        dirmodel->fileInfo(index).fileName());
+    addItemToTableHandler(m_dirmodel->fileInfo(index).isDir(),
+                        m_dirmodel->fileInfo(index).absoluteFilePath(),
+                        m_dirmodel->fileInfo(index).fileName());
 }
 
 void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QString fileName) {
@@ -29,18 +29,18 @@ void TagEditor::addItemToTableHandler(bool isDir, QString absoluteFilePath, QStr
         QMessageBox::Ok) == QMessageBox::Ok)) {
         QDirIterator subs(absoluteFilePath,
             QDir::NoDotAndDotDot | QDir::Files | QDir::NoSymLinks, QDirIterator::Subdirectories);
-        editSongWidget->hide();
-        lineEditArtist->clear();
-        lineEditTitle->clear();
-        lineEditAlbum->clear();
-        lineEditGenre->clear();
-        lineEditFilePath->clear();
-        lineEditYear->clear();
-        lineEditTrack->clear();
-        lineEditComment->clear();
-        imageLabel->clear();
-        infoLabel->show();
-        audioFilesMap.clear();
+        m_editSongWidget->hide();
+        m_lineEditArtist->clear();
+        m_lineEditTitle->clear();
+        m_lineEditAlbum->clear();
+        m_lineEditGenre->clear();
+        m_lineEditFilePath->clear();
+        m_lineEditYear->clear();
+        m_lineEditTrack->clear();
+        m_lineEditComment->clear();
+        m_imageLabel->clear();
+        m_infoLabel->show();
+        m_audioFilesMap.clear();
         m_filesTable->clearContents();
         m_filesTable->setRowCount(0);
         while(subs.hasNext())
@@ -62,14 +62,14 @@ void TagEditor::addItemToTable(QString &&qfilePath, QString &&qfileName) {
 
     if (std::regex_match(qfileName.toStdString().c_str(), match, pattern)) {
         AudioFile a(TagLib::FileRef(qfilePath.toStdString().c_str()), qfilePath.toStdString());
-        if(a.isNull() && audioFilesMap.count(a.filePath) == 0) {
+        if(a.isNull() && m_audioFilesMap.count(a.filePath) == 0) {
             int column = 0;
 
             a.fileName = qfileName.toStdString();
-            audioFilesMap.emplace(qfilePath.toStdString(), a);
+            m_audioFilesMap.emplace(qfilePath.toStdString(), a);
             m_filesTable->insertRow(m_filesTable->rowCount());
-            curEditableFilePath = "";
-            curSelectedRow = -1;
+            m_curEditableFilePath = "";
+            m_curSelectedRow = -1;
             QTableWidgetItem *filename = new QTableWidgetItem(tr(a.getProperty("ARTIST").c_str()));
             QTableWidgetItem *TITLE = new QTableWidgetItem(tr(a.getProperty("TITLE").c_str()));
             QTableWidgetItem *ALBUM = new QTableWidgetItem(tr(a.getProperty("ALBUM").c_str()));

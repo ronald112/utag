@@ -4,8 +4,8 @@
 TagEditor::TagEditor()
 {
     setlocale(LC_ALL, "");
-    mainSplitter = new QSplitter(Qt::Horizontal, this);
-    setCentralWidget(mainSplitter);
+    m_mainSplitter = new QSplitter(Qt::Horizontal, this);
+    setCentralWidget(m_mainSplitter);
     m_projectPath = QFileSystemModel(this).rootDirectory().absolutePath();
 
     createTreeView();
@@ -35,46 +35,46 @@ void TagEditor::cmdLineArgHandler() {
 }
 
 void TagEditor::cleanContent() {
-    lineEditArtist->clear();
-    lineEditTitle->clear();
-    lineEditAlbum->clear();
-    lineEditGenre->clear();
-    lineEditFilePath->clear();
-    lineEditYear->clear();
-    lineEditTrack->clear();
-    lineEditComment->clear();
-    imageLabel->clear();
-    editSongWidget->hide();
-    infoLabel->show();
+    m_lineEditArtist->clear();
+    m_lineEditTitle->clear();
+    m_lineEditAlbum->clear();
+    m_lineEditGenre->clear();
+    m_lineEditFilePath->clear();
+    m_lineEditYear->clear();
+    m_lineEditTrack->clear();
+    m_lineEditComment->clear();
+    m_imageLabel->clear();
+    m_editSongWidget->hide();
+    m_infoLabel->show();
 }
 
 void TagEditor::cleanTable() {
-    audioFilesMap.clear();
+    m_audioFilesMap.clear();
     m_filesTable->clearContents();
     m_filesTable->setRowCount(0);
     cleanContent();
 }
 
 void TagEditor::undo() {
-    lineEditArtist->undo();
-    lineEditTitle->undo();
-    lineEditAlbum->undo();
-    lineEditGenre->undo();
-    lineEditFilePath->undo();
-    lineEditYear->redo();
-    lineEditTrack->redo();
-    lineEditComment->redo();
+    m_lineEditArtist->undo();
+    m_lineEditTitle->undo();
+    m_lineEditAlbum->undo();
+    m_lineEditGenre->undo();
+    m_lineEditFilePath->undo();
+    m_lineEditYear->redo();
+    m_lineEditTrack->redo();
+    m_lineEditComment->redo();
 }
 
 void TagEditor::redo() {
-    lineEditArtist->redo();
-    lineEditTitle->redo();
-    lineEditAlbum->redo();
-    lineEditGenre->redo();
-    lineEditFilePath->redo();
-    lineEditYear->undo();
-    lineEditTrack->undo();
-    lineEditComment->undo();
+    m_lineEditArtist->redo();
+    m_lineEditTitle->redo();
+    m_lineEditAlbum->redo();
+    m_lineEditGenre->redo();
+    m_lineEditFilePath->redo();
+    m_lineEditYear->undo();
+    m_lineEditTrack->undo();
+    m_lineEditComment->undo();
 }
 
 void TagEditor::about() {

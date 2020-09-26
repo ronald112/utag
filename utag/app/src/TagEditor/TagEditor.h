@@ -27,45 +27,45 @@ private:
     void createEditSongLayout();
     void cmdLineArgHandler();
 
-    std::map<const std::string, AudioFile> audioFilesMap;
+    std::map<const std::string, AudioFile> m_audioFilesMap;
 
-    QString curEditableFilePath;
-    int curSelectedRow = -1;
+    QString m_curEditableFilePath;
+    int m_curSelectedRow = -1;
 
-    QWidget* editSongWidget;
-    QLineEdit *lineEditArtist;
-    QLineEdit *lineEditTitle;
-    QLineEdit *lineEditAlbum;
-    QLineEdit *lineEditGenre;
-    QLineEdit *lineEditFilePath;
-    QLineEdit *lineEditComment;
-    QLineEdit *lineEditYear;
-    QLineEdit *lineEditTrack;
+    QWidget* m_editSongWidget;
+    QLineEdit *m_lineEditArtist;
+    QLineEdit *m_lineEditTitle;
+    QLineEdit *m_lineEditAlbum;
+    QLineEdit *m_lineEditGenre;
+    QLineEdit *m_lineEditFilePath;
+    QLineEdit *m_lineEditComment;
+    QLineEdit *m_lineEditYear;
+    QLineEdit *m_lineEditTrack;
 
-    QSplitter* contentVSplitter;
-    QWidget* rightTopWidget;
-    QWidget* rightBotWidget;
-    QWidget* buttonWidget;
-    QVBoxLayout* topVLayout;
-    QHBoxLayout* butttonLayout;
-    QVBoxLayout* botLayout;
+    QSplitter* m_contentVSplitter;
+    QWidget* m_rightTopWidget;
+    QWidget* m_rightBotWidget;
+    QWidget* m_buttonWidget;
+    QVBoxLayout* m_topVLayout;
+    QHBoxLayout* m_butttonLayout;
+    QVBoxLayout* m_botLayout;
 
-    QSplitter* mainSplitter;
+    QSplitter* m_mainSplitter;
     QString m_projectPath;
-    QFileSystemModel* dirmodel;
-    QTreeView* treeView;
+    QFileSystemModel* m_dirmodel;
+    QTreeView* m_treeView;
     QLabel *m_plug;
     QTableWidget *m_filesTable;
-    QPushButton* saveButton;
-    QPushButton* undoButton;
-    QPushButton* redoButton;
-    QPushButton* aboutButton;
-    QPushButton* aboutQtButton;
-    QPushButton* cleanTableButton;
-    QPushButton* cleanContentButton;
-    QLabel* imageLabel;
+    QPushButton* m_saveButton;
+    QPushButton* m_undoButton;
+    QPushButton* m_redoButton;
+    QPushButton* m_aboutButton;
+    QPushButton* m_aboutQtButton;
+    QPushButton* m_cleanTableButton;
+    QPushButton* m_cleanContentButton;
+    QLabel* m_imageLabel;
 
-    QLabel *infoLabel;
+    QLabel *m_infoLabel;
 
 private slots:
     void save();
@@ -74,8 +74,5 @@ private slots:
     void eventOpenFileFromTable(int row);
     void cleanTable();
     void cleanContent();
-    // void cleanDouble();
-    // void copy();
-    // void paste();
     void about();
 };
