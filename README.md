@@ -8,7 +8,7 @@
 >3. enjoy!
 
 ### Description:
-This is a program to edit audio tags. It developed using [qt5](https://github.com/qt/qt5) and [taglib](https://github.com/taglib/taglib) frameworks.
+This is a program to edit audio tags for MACOS. It developed using [qt5](https://github.com/qt/qt5) and [taglib](https://github.com/taglib/taglib) frameworks.
 
 ### Features
 Works with various of audio extensions: mp3|ogg|oga|mogg|flac|mpc|wav|mp4|asf|tta|aiff|spx|wv. Display audio image. Can edit artist, title, album, genre, filePath, year, track, comment. Can open directory with audio files through terminal and gui.
