@@ -22,4 +22,4 @@ Works with various of audio extensions: mp3|ogg|oga|mogg|flac|mpc|wav|mp4|asf|tt
 </ul>
 
 --------
-[utag Main window view](demo/mainWindowView.png)
+![utag Main window view](demo/mainWindowView.png)
