@@ -70,14 +70,18 @@ void TagEditor::addItemToTable(QString &&qfilePath, QString &&qfileName) {
             m_filesTable->insertRow(m_filesTable->rowCount());
             curEditableFilePath = "";
             curSelectedRow = -1;
-            // if (row % 2 == 0) {
-            //     m_filesTable->setFrameStyle();
-            // }
             QTableWidgetItem *filename = new QTableWidgetItem(tr(a.getProperty("ARTIST").c_str()));
             QTableWidgetItem *TITLE = new QTableWidgetItem(tr(a.getProperty("TITLE").c_str()));
             QTableWidgetItem *ALBUM = new QTableWidgetItem(tr(a.getProperty("ALBUM").c_str()));
             QTableWidgetItem *GENRE = new QTableWidgetItem(tr(a.getProperty("GENRE").c_str()));
             QTableWidgetItem *filePath = new QTableWidgetItem(qfilePath);
+            // if (m_filesTable->rowCount() % 2 == 0) {
+            //     filename->setBackground(QColor(211,211,211, 127));
+            //     TITLE->setBackground(QColor(211,211,211, 127));
+            //     ALBUM->setBackground(QColor(211,211,211, 127));
+            //     GENRE->setBackground(QColor(211,211,211, 127));
+            //     filePath->setBackground(QColor(211,211,211, 127));
+            // }
             m_filesTable->setItem(m_filesTable->rowCount() - 1, column++, filename);
             m_filesTable->setItem(m_filesTable->rowCount() - 1, column++, TITLE);
             m_filesTable->setItem(m_filesTable->rowCount() - 1, column++, ALBUM);

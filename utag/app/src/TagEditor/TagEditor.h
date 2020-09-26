@@ -61,7 +61,8 @@ private:
     QPushButton* redoButton;
     QPushButton* aboutButton;
     QPushButton* aboutQtButton;
-    QPushButton* cleanButton;
+    QPushButton* cleanTableButton;
+    QPushButton* cleanContentButton;
     QLabel* imageLabel;
 
     QLabel *infoLabel;
@@ -71,7 +72,9 @@ private slots:
     void undo();
     void redo();
     void eventOpenFileFromTable(int row);
-    void clean();
+    void cleanTable();
+    void cleanContent();
+    // void cleanDouble();
     // void copy();
     // void paste();
     void about();

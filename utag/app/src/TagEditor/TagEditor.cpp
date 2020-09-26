@@ -34,6 +34,27 @@ void TagEditor::cmdLineArgHandler() {
     }
 }
 
+void TagEditor::cleanContent() {
+    lineEditArtist->clear();
+    lineEditTitle->clear();
+    lineEditAlbum->clear();
+    lineEditGenre->clear();
+    lineEditFilePath->clear();
+    lineEditYear->clear();
+    lineEditTrack->clear();
+    lineEditComment->clear();
+    imageLabel->clear();
+    editSongWidget->hide();
+    infoLabel->show();
+}
+
+void TagEditor::cleanTable() {
+    audioFilesMap.clear();
+    m_filesTable->clearContents();
+    m_filesTable->setRowCount(0);
+    cleanContent();
+}
+
 void TagEditor::undo() {
     lineEditArtist->undo();
     lineEditTitle->undo();
@@ -66,19 +87,6 @@ void TagEditor::about() {
         QMessageBox::Ok);
 }
 
-void TagEditor::clean() {
-    lineEditArtist->clear();
-    lineEditTitle->clear();
-    lineEditAlbum->clear();
-    lineEditGenre->clear();
-    lineEditFilePath->clear();
-    lineEditYear->clear();
-    lineEditTrack->clear();
-    lineEditComment->clear();
-    imageLabel->clear();
-    editSongWidget->hide();
-    infoLabel->show();
-}
 
 TagEditor::~TagEditor() {
 }

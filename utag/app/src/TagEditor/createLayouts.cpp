@@ -13,10 +13,11 @@ void TagEditor::createLayouts() {
     m_filesTable = new QTableWidget(0, 5, this);
 
     butttonLayout->setMargin(0);
+    butttonLayout->setSpacing(5);
     butttonLayout->addWidget(saveButton, Qt::AlignLeft);
     butttonLayout->addWidget(undoButton, Qt::AlignLeft);
     butttonLayout->addWidget(redoButton, Qt::AlignLeft);
-    butttonLayout->addWidget(cleanButton, Qt::AlignLeft);
+    butttonLayout->addWidget(cleanTableButton, Qt::AlignLeft);
     butttonLayout->addWidget(aboutButton, Qt::AlignLeft);
     butttonLayout->addWidget(aboutQtButton, Qt::AlignLeft);
     butttonLayout->addWidget(m_plug, Qt::AlignRight);
@@ -50,7 +51,7 @@ void TagEditor::createLayouts() {
     mainSplitter->addWidget(treeView);
     mainSplitter->addWidget(contentVSplitter);
     mainSplitter->setSizes(QList<int>({ 1, 400}));
-    mainSplitter->setStyleSheet("background-color:silver;");
+    // mainSplitter->setStyleSheet("background-color:silver;");
     createEditSongLayout();
 }
 
@@ -92,7 +93,8 @@ void TagEditor::createEditSongLayout() {
     editSongGridLayout->addWidget(lineEditTrack, 1, 3);
     editSongGridLayout->addWidget(label8, 2, 2);
     editSongGridLayout->addWidget(lineEditComment, 2, 3);
-    editSongGridLayout->addWidget(imageLabel, 0, 4, 4, 1);
+    editSongGridLayout->addWidget(imageLabel, 0, 4, 4, 1, Qt::AlignCenter);
+    editSongGridLayout->addWidget(cleanContentButton, 4, 4);
     botLayout->addWidget(editSongWidget, Qt::AlignTop);
 }
 

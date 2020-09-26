@@ -8,27 +8,28 @@ void TagEditor::createButtons() {
     redoButton = new QPushButton(this);
     aboutButton = new QPushButton(this);
     aboutQtButton = new QPushButton(this);
-    cleanButton = new QPushButton(this);
+    cleanTableButton = new QPushButton(this);
+    cleanContentButton = new QPushButton("Clean content", this);
 
     // customize buttons
-    saveButton->setFixedWidth(30);
+    saveButton->setFixedWidth(40);
     saveButton->setIconSize(QSize(15, 15));
     saveButton->setIcon(QIcon(m_projectPath + "/resources/save.png"));
-    undoButton->setFixedWidth(30);
+    undoButton->setFixedWidth(40);
     undoButton->setIconSize(QSize(15, 15));
     undoButton->setIcon(QIcon(m_projectPath + "/resources/undo.png"));
-    redoButton->setFixedWidth(30);
+    redoButton->setFixedWidth(40);
     redoButton->setIconSize(QSize(15, 15));
     redoButton->setIcon(QIcon(m_projectPath + "/resources/redo.png"));
-    aboutButton->setFixedWidth(30);
+    aboutButton->setFixedWidth(40);
     aboutButton->setIconSize(QSize(15, 15));
     aboutButton->setIcon(QIcon(m_projectPath + "/resources/about.png"));
-    aboutQtButton->setFixedWidth(30);
+    aboutQtButton->setFixedWidth(40);
     aboutQtButton->setIconSize(QSize(15, 15));
     aboutQtButton->setIcon(QIcon(m_projectPath + "/resources/about_qt.png"));
-    cleanButton->setFixedWidth(30);
-    cleanButton->setIconSize(QSize(15, 15));
-    cleanButton->setIcon(QIcon(m_projectPath + "/resources/clean.png"));
+    cleanTableButton->setFixedWidth(40);
+    cleanTableButton->setIconSize(QSize(15, 15));
+    cleanTableButton->setIcon(QIcon(m_projectPath + "/resources/clean.png"));
 
     // connect menu buttons
     connect(saveButton, &QAbstractButton::clicked, this, &TagEditor::save);
@@ -36,7 +37,8 @@ void TagEditor::createButtons() {
     connect(redoButton, &QAbstractButton::clicked, this, &TagEditor::redo);
     connect(aboutButton, &QAbstractButton::clicked, this, &TagEditor::about);
     connect(aboutQtButton, &QAbstractButton::clicked, this, &QApplication::aboutQt);
-    connect(cleanButton, &QAbstractButton::clicked, this, &TagEditor::clean);
+    connect(cleanTableButton, &QAbstractButton::clicked, this, &TagEditor::cleanTable);
+    connect(cleanContentButton, &QAbstractButton::clicked, this, &TagEditor::cleanContent);
 
     // set up shortcuts
     saveButton->setShortcut(QKeySequence::Save);
@@ -49,5 +51,5 @@ void TagEditor::createButtons() {
     saveButton->setStatusTip(tr("Save a file"));
     undoButton->setStatusTip(tr("Undo changes"));
     redoButton->setStatusTip(tr("Redo changes"));
-    cleanButton->setStatusTip(tr("Remove selection"));
+    cleanTableButton->setStatusTip(tr("Remove selection"));
 }
