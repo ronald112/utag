@@ -57,7 +57,6 @@ void TagEditor::createLayouts() {
 void TagEditor::createEditSongLayout() {
     editSongWidget = new QWidget(contentVSplitter);
     QGridLayout* editSongGridLayout = new QGridLayout(editSongWidget);
-    // QFormLayout* editSongLayout = new QFormLayout;
     editSongWidget->hide();
     lineEditArtist = new QLineEdit(contentVSplitter);
     lineEditTitle = new QLineEdit(contentVSplitter);

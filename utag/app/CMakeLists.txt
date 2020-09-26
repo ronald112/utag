@@ -46,6 +46,11 @@ endfunction()
 include_all_files()
 add_subdirectory(src)
 
-add_executable(${PROJECT_NAME} ${SOURCE_EXE} ${APP_ICON_RESOURCE_WINDOWS})
+set(MACOSX_BUNDLE_ICON_FILE utag_icon.icns)
+set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/../resources/utag_icon.icns)
+set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+           MACOSX_PACKAGE_LOCATION "Resources")
+
+add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON_MACOSX} ${SOURCE_EXE})
 target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
 

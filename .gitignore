@@ -3,6 +3,7 @@
 
 #build files
 build/
+utag.app/
 
 # Ignore a file without extension
 utag/utag
