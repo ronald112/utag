@@ -21,10 +21,12 @@ void TagEditor::save() {
                 edit->second.saveFieldWithValue('g', m_lineEditGenre->text().toStdString());
             }
             if (m_lineEditYear->isModified()) {
-                edit->second.saveFieldWithValue('y', m_lineEditYear->text().toStdString());
+                string text = m_lineEditYear->text().toStdString();
+                edit->second.saveFieldWithValue('y', text.size() == 0 ? "0" : text);
             }
             if (m_lineEditTrack->isModified()) {
-                edit->second.saveFieldWithValue('T', m_lineEditTrack->text().toStdString());
+                string text = m_lineEditTrack->text().toStdString();
+                edit->second.saveFieldWithValue('T', text.size() == 0 ? "0" : text);
             }
             if (m_lineEditComment->isModified()) {
                 edit->second.saveFieldWithValue('c', m_lineEditComment->text().toStdString());

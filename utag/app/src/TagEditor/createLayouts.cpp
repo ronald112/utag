@@ -77,6 +77,10 @@ void TagEditor::createEditSongLayout() {
     QLabel *label8 = new QLabel("Comment");
     m_imageLabel = new QLabel();
 
+    // set validators
+    m_lineEditYear->setValidator(new QIntValidator(0, 2020, this));
+    m_lineEditTrack->setValidator(new QIntValidator(0, 100, this));
+
     editSongGridLayout->addWidget(label1, 0, 0);
     editSongGridLayout->addWidget(m_lineEditArtist, 0, 1);
     editSongGridLayout->addWidget(label2, 1, 0);

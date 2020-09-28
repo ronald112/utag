@@ -32,7 +32,7 @@ void TagEditor::eventOpenFileFromTable(int row) {
         m_lineEditAlbum->setText(tr(it->second.getProperty("ALBUM").c_str()));
         m_lineEditGenre->setText(tr(it->second.getProperty("GENRE").c_str()));
         m_lineEditFilePath->setText(tr(filePath.c_str()));
-        m_lineEditYear->setText(tr(it->second.getProperty("YEAR").c_str()));
+        m_lineEditYear->setText(tr(it->second.getProperty("DATE").c_str()));
         m_lineEditTrack->setText(tr(it->second.getProperty("TRACKNUMBER").c_str()));
         m_lineEditComment->setText(tr(it->second.getProperty("COMMENT").c_str()));
         m_curEditableFilePath = tr(filePath.c_str());
