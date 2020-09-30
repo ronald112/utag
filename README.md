@@ -4,7 +4,7 @@
 
 ### Installation:
 >1. git clone https://github.com/ronald112/utag.git
->2. cmake . -Bbuild -Wdev -Werror=dev && cmake --build ./build
+>2. bash build.sh
 >3. enjoy!
 
 ### Description:
