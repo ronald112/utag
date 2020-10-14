@@ -1,0 +1,64 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"app/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "tag::@0f416f78ea9c9419647c"
+		}
+	],
+	"id" : "src_lib_autogen_timestamp_deps::@118c54878b8c3f5e9e9e",
+	"isGeneratorProvided" : true,
+	"name" : "src_lib_autogen_timestamp_deps",
+	"paths" : 
+	{
+		"build" : "app/src",
+		"source" : "app/src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "D:/StudyWork/Progamming/uCode/C++/utag/build-utag-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/app/src/CMakeFiles/src_lib_autogen_timestamp_deps",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "D:/StudyWork/Progamming/uCode/C++/utag/build-utag-Desktop_Qt_5_15_1_MinGW_32_bit-Debug/app/src/CMakeFiles/src_lib_autogen_timestamp_deps.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}
