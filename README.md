@@ -3,9 +3,8 @@
 [Yuri Burienkov](https://github.com/ronald112)
 
 ### Installation:
->1. git clone https://github.com/ronald112/utag.git
->2. bash build.sh
->3. enjoy!
+>1. Download the latest realease
+>2. Enjoy!
 
 ### Description:
 This is a program to edit audio tags for MACOS. It developed using [qt5](https://github.com/qt/qt5) and [taglib](https://github.com/taglib/taglib) frameworks.
