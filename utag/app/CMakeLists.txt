@@ -5,6 +5,7 @@ add_compile_options(
     -Wextra
     -Werror
     -Wpedantic
+    -DTAGLIB_STATIC
 )
 
 set(CMAKE_AUTOMOC ON)
@@ -47,6 +48,17 @@ endfunction()
 include_all_files()
 add_subdirectory(src)
 
-add_executable(${PROJECT_NAME} ${SOURCE_EXE})
+#Set app icon
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(MACOSX_BUNDLE_ICON_FILE utext_icon.icns)
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/resources/utext_icon.icns)
+    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+               MACOSX_PACKAGE_LOCATION "Resources")
+    add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON_MACOSX} main.cpp ${RESOURCES})
+else()
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../resources/app_win32.rc")
+
+    add_executable(${CMAKE_PROJECT_NAME} main.cpp ${APP_ICON_RESOURCE})
+endif()
 target_link_libraries(${PROJECT_NAME} tag src_lib Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
 
