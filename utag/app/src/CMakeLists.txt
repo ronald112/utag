@@ -9,4 +9,4 @@ function(custom_add_library_from_dir TARGET)
 endfunction()
 
 custom_add_library_from_dir("src_lib")
-target_link_libraries(src_lib Qt5::Core Qt5::Qml Qt5::Widgets)
+target_link_libraries(src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets)

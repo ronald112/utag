@@ -14,22 +14,22 @@ void TagEditor::createButtons() {
     // customize buttons
     m_saveButton->setFixedWidth(40);
     m_saveButton->setIconSize(QSize(15, 15));
-    m_saveButton->setIcon(QIcon(m_projectPath + "/resources/save.png"));
+    m_saveButton->setIcon(QIcon( "./utag/resources/save.ico"));
     m_undoButton->setFixedWidth(40);
     m_undoButton->setIconSize(QSize(15, 15));
-    m_undoButton->setIcon(QIcon(m_projectPath + "/resources/undo.png"));
+    m_undoButton->setIcon(QIcon("./utag/resources/undo.png"));
     m_redoButton->setFixedWidth(40);
     m_redoButton->setIconSize(QSize(15, 15));
-    m_redoButton->setIcon(QIcon(m_projectPath + "/resources/redo.png"));
+    m_redoButton->setIcon(QIcon("./utag/resources/redo.png"));
     m_aboutButton->setFixedWidth(40);
     m_aboutButton->setIconSize(QSize(15, 15));
-    m_aboutButton->setIcon(QIcon(m_projectPath + "/resources/about.png"));
+    m_aboutButton->setIcon(QIcon("./utag/resources/about.png"));
     m_aboutQtButton->setFixedWidth(40);
     m_aboutQtButton->setIconSize(QSize(15, 15));
-    m_aboutQtButton->setIcon(QIcon(m_projectPath + "/resources/about_qt.png"));
+    m_aboutQtButton->setIcon(QIcon("./utag/resources/about_qt.png"));
     m_cleanTableButton->setFixedWidth(40);
     m_cleanTableButton->setIconSize(QSize(15, 15));
-    m_cleanTableButton->setIcon(QIcon(m_projectPath + "/resources/clean.png"));
+    m_cleanTableButton->setIcon(QIcon("./utag/resources/clean.png"));
 
     // connect menu buttons
     connect(m_saveButton, &QAbstractButton::clicked, this, &TagEditor::save);

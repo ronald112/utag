@@ -5,6 +5,7 @@ add_compile_options(
     -Wextra
     -Werror
     -Wpedantic
+    -DTAGLIB_STATIC
 )
 
 set(CMAKE_AUTOMOC ON)
@@ -34,6 +35,7 @@ MACRO(SUBDIRLIST result firstdir curdir)
     SET(${result} ${dirlist})
 ENDMACRO()
 
+
 function(include_all_files)
     SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR}/../3dparty/taglib/taglib/ ${CMAKE_CURRENT_SOURCE_DIR}/../3dparty/taglib/taglib)
 
@@ -46,11 +48,19 @@ endfunction()
 include_all_files()
 add_subdirectory(src)
 
-set(MACOSX_BUNDLE_ICON_FILE utag_icon.icns)
-set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/../resources/utag_icon.icns)
-set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
-           MACOSX_PACKAGE_LOCATION "Resources")
+qt5_add_resources(RESOURCES resources/myres.qrc)
 
-add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON_MACOSX} ${SOURCE_EXE})
-target_link_libraries(${PROJECT_NAME} src_lib tag Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
+#Set app icon
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(MACOSX_BUNDLE_ICON_FILE utag_icon.icns)
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/../resources/utag_icon.icns)
+    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
+               MACOSX_PACKAGE_LOCATION "Resources")
+    add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON_MACOSX} main.cpp ${RESOURCES})
+else()
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../resources/app_win32.rc")
+
+    add_executable(${CMAKE_PROJECT_NAME} main.cpp ${APP_ICON_RESOURCE})
+endif()
+target_link_libraries(${PROJECT_NAME} tag src_lib Qt5::Core Qt5::Qml Qt5::Widgets Qt5::Gui)
 

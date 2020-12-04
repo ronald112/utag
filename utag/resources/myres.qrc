@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>about_qt.png</file>
+        <file>save.png</file>
+        <file>save.ico</file>
+        <file>redo.png</file>
+        <file>undo.png</file>
+        <file>about.png</file>
+        <file>app_icon.png</file>
+        <file>clean.png</file>
+        <file>done.png</file>
+    </qresource>
+</RCC>
