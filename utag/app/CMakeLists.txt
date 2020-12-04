@@ -48,10 +48,12 @@ endfunction()
 include_all_files()
 add_subdirectory(src)
 
+qt5_add_resources(RESOURCES resources/myres.qrc)
+
 #Set app icon
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set(MACOSX_BUNDLE_ICON_FILE utext_icon.icns)
-    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/resources/utext_icon.icns)
+    set(MACOSX_BUNDLE_ICON_FILE utag_icon.icns)
+    set(APP_ICON_MACOSX ${CMAKE_CURRENT_SOURCE_DIR}/../resources/utag_icon.icns)
     set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES
                MACOSX_PACKAGE_LOCATION "Resources")
     add_executable(${CMAKE_PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON_MACOSX} main.cpp ${RESOURCES})
